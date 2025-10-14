@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}공지사항 - IMPERIUM SERVER{% endblock %}
+{% block content %}
+<!-- Hero Section Component -->
+<section class="section-header">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h1 class="font-pixel text-4xl md:text-5xl mb-6 tracking-wider text-shadow-pixel">
+            공지사항
+        </h1>
+        <p class="text-xl md:text-2xl opacity-90 leading-relaxed max-w-3xl mx-auto">
+            서버의 최신 소식과 중요한 안내사항을<br class="hidden md:block">
+            확인하세요.
+        </p>
+    </div>
+</section>
+
+<!-- Content Section Component -->
+<section class="content-section">
+    <div class="max-w-4xl mx-auto px-4">
+        <!-- Important Notice Component -->
+        <div class="card-component p-8 mb-12">
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="w-12 h-12 bg-gradient-to-br from-mc-red to-red-600 rounded-3xl flex items-center justify-center">
+                    <span class="text-2xl">📢</span>
+                </div>
+                <h2 class="font-pixel text-2xl text-mc-red">중요 공지</h2>
+            </div>
+            {% for ImportantNotice in ImportantNotices %}
+                <div class="notice-card group hover:shadow-toss-xl transition-all duration-200 border-l-4 border-mc-red">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="font-semibold text-mc-blue text-xl group-hover:text-blue-600 transition-colors">{{ ImportantNotice.title }}</h3>
+                        <span class="text-sm text-gray-500">{{ ImportantNotice.created_at }}</span>
+                    </div>
+                    
+                    <pre class="text-gray-600 leading-relaxed mb-4 font-semibold font-sans whitespace-pre-wrap break-words" style="text-align: center;">{{ ImportantNotice.content0 }}</pre>
+
+                    <div class="bg-mc-gray rounded-2xl p-4 border border-gray-200">
+                        <pre class="text-sm text-gray-700 font-semibold font-sans whitespace-pre-wrap break-words">{{ ImportantNotice.content1 }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>공지사항이 없습니다.</p>
+            {% endfor %}
+
+            
+        </div>
+        
+        <!-- Regular Notices Component -->
+        <div class="card-component p-8 mb-12">
+            <h2 class="font-pixel text-2xl text-mc-blue mb-8 tracking-wide">일반 공지</h2>
+            <div class="space-y-6">
+                {% for NormalNotice in NormalNotices %}
+                    <div class="notice-card group hover:shadow-toss-xl transition-all duration-200">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="font-semibold text-mc-blue text-lg group-hover:text-blue-600 transition-colors">{{ NormalNotice.title }}</h3>
+                            <span class="text-sm text-gray-500">{{ NormalNotice.created_at }}</span>
+                        </div>
+
+                        <pre class="text-gray-600 leading-relaxed mb-4 font-sans whitespace-pre-wrap break-words">{{ NormalNotice.content0 }}</pre>
+                        <pre class="text-gray-600 leading-relaxed mb-4 font-sans whitespace-pre-wrap break-words">{{ NormalNotice.content1 }}</pre>
+                    </div>
+                {% empty %}
+                    <p>공지사항이 없습니다.</p>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Archive Component -->
+        <div class="card-component p-8">
+            <h2 class="font-pixel text-2xl text-mc-blue mb-8 tracking-wide">공지사항 아카이브</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                {% for ArchivedNotice in ArchivedNotices %}
+                    <a href="{% url 'notice:archived_notice' ArchivedNotice.id %}">
+                        <div class="stats-card p-4 group hover:shadow-toss-lg transition-all duration-200 cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="font-semibold text-mc-blue text-sm group-hover:text-blue-600 transition-colors">{{ ArchivedNotice.title }}</h3>
+                                    <p class="text-gray-500 text-xs">{{ ArchivedNotice.created_at }}</p>
+                                </div>
+                                <span class="text-gray-400">📄</span>
+                            </div>
+                        </div>
+                    </a>
+                {% empty %}
+                    <p>공지사항이 없습니다.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
