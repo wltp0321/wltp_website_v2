@@ -51,13 +51,26 @@ IMPERIUM SERVER v2 is a Django-powered web project, designed to efficiently mana
 ```
 
 wltp_website_v2/
-├─ config/               # Django 프로젝트 설정
-├─ main/                 # 메인 앱 (홈, 네비게이션 등)
-├─ blog/                 # 블로그 앱
-├─ projects/             # 프로젝트 소개 앱
-├─ about_crewones/       # 팀원 소개 앱
-├─ static/               # 정적 파일 (CSS, JS, 이미지)
-├─ templates/            # HTML 템플릿
+├─ venv/                             # 가상 환경 설정 폴더
+├─ about_crew/                       # 크루 소개 앱
+├─ about_crewones/                   # 팀원 소개 앱
+├─ about_crewones_settings           # 팀원의 컴퓨터 사양이나 게임 설정 소개 앱
+├─ account/                          # 사용자 계정 관리 서비스
+├─ notice/                           # 공지사항 앱
+├─ projects/                         # 프로젝트 앱
+├─ config/                           # Django 프로젝트 설정
+├─ main/                             # 메인 앱 (홈, 네비게이션 등)
+├─ blog/                             # 블로그 앱
+├─ projects/                         # 프로젝트 소개 앱
+├─ about_crewones/                   # 팀원 소개 앱
+├─ media/                            # 이미지 등 미디어 정적 파일
+├─ static/                           # 정적 파일 (CSS, JS)
+├─ templates/                        # HTML 템플릿
+├─ .gitignore
+├─ README.md
+├─ secrets.json
+├─ start.sh
+├─ testmode.sh
 └─ manage.py
 
 ```
