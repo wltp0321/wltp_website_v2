@@ -29,7 +29,6 @@ from django.views.generic import TemplateView
 from . import views
 
 from main.views import main_main
-from gallery.views import gallery_main
 from account.views import account_main
 from about_crew.views import about_crews
 
@@ -52,7 +51,6 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     #path('ranking/', include("ranking.urls")),
     path('notices/', include('notice.urls')),
-    path('api/', include('api.urls')),
     path('accounts/', include("account.urls")),
     url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),

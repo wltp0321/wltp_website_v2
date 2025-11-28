@@ -70,7 +70,6 @@ INSTALLED_APPS = [
     'main',
     'projects',
     'account',
-    'api',
     'about_crewones_settings',
     'about_crew',
     'notice',
