@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from .models import *
-from ranking.models import *
+from .models import *   
 
 def main_main(request):
-    count = Player.objects.count()
-    build =  BuildPlayer.objects.count()
-    redstone =  RedstonePlayer.objects.count()
-    return render(request, "main/index.html", {'player_count': count, 'build_player_count': build, 'redstone_player_count': redstone})
+    # count = Player.objects.count()
+    # build =  BuildPlayer.objects.count()
+    # redstone =  RedstonePlayer.objects.count()
+    return render(request, "main/index.html", )#{'player_count': count, 'build_player_count': build, 'redstone_player_count': redstone})
 
 
 

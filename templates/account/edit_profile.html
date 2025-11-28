@@ -13,6 +13,21 @@
 
 <section class="content-section mt-8">
   <div class="max-w-2xl mx-auto bg-white p-6 md:p-10 border border-gray-200 shadow rounded-2xl">
+    
+    <!-- 비밀번호 변경 링크를 폼 위에 배치 -->
+    <div class="text-center mb-6">
+      <a href="{% url 'account:password_change' %}" 
+         class="text-blue-600 hover:underline font-semibold text-sm">
+        🔐 비밀번호 변경하기
+      </a>
+    </div>
+        <form action="{% url 'account:delete_account' %}" method="POST" class="flex justify-center space-x-4">
+            {% csrf_token %}
+            <button type="submit" 
+                    class="btn btn-secondary bg-red-600 text-white font-pixel py-2 px-6 rounded-md hover:bg-red-700 transition">
+                회원 탈퇴
+            </button>
+        </form>
     <form method="post" class="space-y-6">
       {% csrf_token %}
       {% for field in form %}
@@ -37,12 +52,13 @@
           수정하기
         </button>
       </div>
+      
     </form>
+    
   </div>
-  <div class="text-center mt-8">
-  <a href="{% url 'account:password_change' %}" class="text-blue-600 hover:underline font-semibold text-sm">
-    🔐 비밀번호 변경하기
-  </a>
-</div>
+
 </section>
 {% endblock %}
+
+<footer class="site-footer container"><div>© edit_profile · Built with a modern minimalist theme</div></footer>
+</body>

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}공지 수정 | IMPERIUM CREW{% endblock %}
+
+{% block content %}
+<section class="section-header py-12 bg-gray-50 text-center">
+  <div class="max-w-3xl mx-auto px-4">
+    <h1 class="font-pixel text-3xl md:text-4xl mb-4 text-mc-blue text-shadow-pixel">
+      공지 수정
+    </h1>
+    <p class="text-lg opacity-80 leading-relaxed">
+      공지를 수정하고 저장하세요.
+    </p>
+  </div>
+</section>
+
+<section class="content-section py-10 bg-white">
+  <div class="max-w-2xl mx-auto px-6 md:px-8 bg-mc-gray p-8 rounded-2xl shadow-lg border border-gray-200">
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+      <div>
+        <label for="title" class="block mb-2 font-semibold text-mc-blue">제목</label>
+        <input type="text" name="title" id="title" value="{{ notice.title }}" required
+               class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mc-blue transition">
+      </div>
+
+      <div>
+        <label for="content0" class="block mb-2 font-semibold text-mc-blue">내용 1</label>
+        <textarea name="content0" id="content0" rows="4"
+                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mc-blue transition">{{ notice.content0 }}</textarea>
+      </div>
+
+      <div>
+        <label for="content1" class="block mb-2 font-semibold text-mc-blue">내용 2</label>
+        <textarea name="content1" id="content1" rows="4"
+                  class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mc-blue transition">{{ notice.content1 }}</textarea>
+      </div>
+
+      <!-- 🔥 notice_type 선택 필드 추가 -->
+      <div>
+        <label for="notice_type" class="block mb-2 font-semibold text-mc-blue">공지 타입</label>
+        <select name="notice_type" id="notice_type"
+                class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mc-blue transition">
+          <option value="important" {% if notice_type == 'important' %}selected{% endif %}>중요 공지</option>
+          <option value="normal" {% if notice_type == 'normal' %}selected{% endif %}>일반 공지</option>
+          <option value="archived" {% if notice_type == 'archived' %}selected{% endif %}>아카이브</option>
+        </select>
+      </div>
+
+      <button type="submit"
+              class="w-full bg-yellow-400 text-gray-900 font-pixel font-semibold py-3 rounded-md hover:bg-yellow-500 transition">
+        수정 완료
+      </button>
+    </form>
+  </div>
+</section>
+{% endblock %}

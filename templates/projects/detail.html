@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}프로젝트 상세 - {{ project.name }}{% endblock %}
+
+{% block content %}
+<section class="py-16 bg-gray-50">
+  <div class="max-w-3xl mx-auto px-6">
+    <h1 class="text-3xl font-bold mb-4">{{ project.name }}</h1>
+    <p class="mb-4"><strong>상태:</strong> {{ project.status }}</p>
+    <p class="mb-4"><strong>설명:</strong> {{ project.description }}</p>
+    {% if project.github_last_update %}
+    <p class="mb-4"><strong>GitHub Last Update:</strong> {{ project.github_last_update|date:"Y-m-d H:i" }}</p>
+    {% endif %}
+    <div class="mt-6 flex gap-4">
+      {% if request.user.is_staff %}
+      <a href="{% url 'projects:edit' project.id %}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">수정</a>
+      <a href="{% url 'projects:delete' project.id %}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">삭제</a>
+      {% endif %}
+      <a href="{% url 'projects:list' %}" class="bg-gray-300 text-gray-900 px-4 py-2 rounded hover:bg-gray-400 transition">목록</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -27,12 +27,12 @@ from django.views.generic import TemplateView
 
 
 from . import views
+
 from main.views import main_main
 from gallery.views import gallery_main
 from account.views import account_main
-from rule.views import server_rule
-from how_to_join.views import server_how_to_join
-from description.views import server_descriptions
+from about_crew.views import about_crews
+
 
 
 urlpatterns = [
@@ -46,10 +46,11 @@ urlpatterns = [
     # path('markdownx/', include('markdownx.urls')),
     # path(".well-known/discord", views.discord),
     path("sitemap.xml", views.sitemap),
-    path('rules/', server_rule, name='rule'),
-    path('descriptions/', server_descriptions, name='descriptions'),
-    path('how_to_join/', server_how_to_join, name='how_to_join'),
-    path('ranking/', include("ranking.urls")),
+    path('about_crewone/', include('about_crewones.urls')),
+    path('about_crews/', about_crews, name='about_crews'),
+    path('about_crewones_setting/', include('about_crewones_settings.urls')),
+    path('projects/', include('projects.urls')),
+    #path('ranking/', include("ranking.urls")),
     path('notices/', include('notice.urls')),
     path('api/', include('api.urls')),
     path('accounts/', include("account.urls")),

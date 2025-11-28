@@ -1,25 +1,53 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 
-{% block title %}대댓글 작성 - {{ post.title }}{% endblock %}
+{% block title %}대댓글 작성 - {{ post.title }} | IMPERIUM SERVER{% endblock %}
+{% block description %}{{ post.title }} 게시글의 댓글에 대한 답글을 작성하는 페이지입니다.{% endblock %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto flex justify-start">
-<button
-  onclick="history.back()"
-  class="inline-block px-4 py-2 mb-4 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
->
-  ← 뒤로가기
-</button>
-</div>
+<!-- Hero Section -->
+<section class="py-16 bg-gradient-to-b from-mc-blue/10 to-white border-b border-gray-200 text-center">
+  <div class="max-w-3xl mx-auto px-6">
+    <h1 class="font-pixel text-4xl md:text-5xl mb-4 text-mc-blue text-shadow-pixel">
+      💬 대댓글 작성
+    </h1>
+    <p class="text-lg text-gray-600">
+      원 댓글에 대한 답글을 남겨보세요.
+    </p>
+  </div>
+</section>
 
-<section class="py-12 bg-white max-w-3xl mx-auto px-4">
-    <h1 class="text-2xl font-bold mb-4">대댓글 작성</h1>
-    <p class="mb-4">원 댓글: {{ parent.content }}</p>
-    <form method="post" class="space-y-4">
+<!-- Form Section -->
+<section class="py-12 bg-gray-50">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
+      <!-- 원 댓글 -->
+      <div class="mb-8">
+        <button onclick="history.back()" 
+                class="mb-4 bg-mc-gold text-gray-900 hover:bg-yellow-400 px-4 py-2 rounded-lg font-pixel transition">
+          ← 뒤로가기
+        </button>
+
+        <div class="bg-gray-50 border border-gray-200 p-5 rounded-xl">
+          <p class="text-sm font-semibold text-gray-500 mb-2">원 댓글</p>
+          <p class="text-gray-800 leading-relaxed">{{ parent.content }}</p>
+        </div>
+      </div>
+
+      <!-- 대댓글 폼 -->
+      <form method="post" class="space-y-6">
         {% csrf_token %}
-        {{ form.content|add_class:"w-full p-3 border rounded-lg" }}
-        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">작성</button>
-    </form>
+        <div>
+          <label for="id_content" class="block mb-2 font-semibold text-mc-blue">내용</label>
+          {{ form.content|add_class:"w-full p-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-mc-blue transition" }}
+        </div>
+
+        <button type="submit"
+                class="w-full bg-mc-gold hover:bg-yellow-400 text-gray-900 font-pixel font-semibold py-3 rounded-xl shadow transition">
+          대댓글 작성하기
+        </button>
+      </form>
+    </div>
+  </div>
 </section>
 {% endblock %}

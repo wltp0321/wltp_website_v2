@@ -106,7 +106,7 @@ def post_create(request):
             return redirect('blog:post_detail', pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'blog/post_form.html', {'form': form})
+    return render(request, 'blog/post_create.html', {'form': form})
 
 @login_required
 def post_edit(request, pk):

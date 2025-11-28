@@ -1,0 +1,31 @@
+{% load widget_tweaks %}
+{% extends "base.html" %}
+
+{% block title %}블로그 글 작성/수정 - IMPERIUM Crew{% endblock %}
+
+{% block content %}
+<section class="py-16">
+  <div class="max-w-3xl mx-auto px-4">
+    <h1 class="text-3xl font-bold mb-6">블로그 글 작성/수정</h1>
+    <form method="post" enctype="multipart/form-data" class="space-y-6">
+      {% csrf_token %}
+      {% for field in form %}
+        <div>
+          <label class="block font-semibold mb-2">{{ field.label }}</label>
+          {{ field|add_class:"w-full border border-gray-300 rounded-lg p-2" }}
+          {% if field.help_text %}
+            <p class="text-sm text-gray-500">{{ field.help_text }}</p>
+          {% endif %}
+          {% for error in field.errors %}
+            <p class="text-sm text-red-500">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endfor %}
+      <button type="submit"
+              class="bg-yellow-400 text-gray-900 font-semibold py-2 px-4 rounded-lg hover:bg-yellow-500 transition">
+        저장
+      </button>
+    </form>
+  </div>
+</section>
+{% endblock %}

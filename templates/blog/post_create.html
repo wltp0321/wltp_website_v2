@@ -1,26 +1,45 @@
 {% extends "base.html" %}
-{% block title %}글 작성{% endblock %}
+{% load widget_tweaks %}
+
+{% block title %}글 작성 - IMPERIUM Crew{% endblock %}
 
 {% block content %}
-<section class="py-12">
-    <div class="max-w-4xl mx-auto flex justify-start">
-  <a href="{% url 'blog:post_list' %}" 
-     class="inline-block px-4 py-2 mb-4 bg-gray-300 text-gray-800 rounded hover:bg-gray-400">
-    ← 글 목록으로 돌아가기
-  </a>
-</div>
+<section class="py-16 bg-gradient-to-b from-gray-50 to-white text-center">
+  <div class="max-w-3xl mx-auto px-6">
+    <h1 class="font-montserrat text-4xl font-bold text-gray-900 mb-4">글 작성</h1>
+    <p class="text-gray-600 mb-10">새 글을 작성하여 커뮤니티와 공유하세요.</p>
 
-    <div class="max-w-3xl mx-auto px-4 bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-        <h1 class="text-2xl font-bold mb-6">📝 글 작성</h1>
-        <form method="post">
-            {% csrf_token %}
-            <div class="space-y-4">
-                {{ form.as_p }}
-            </div>
-            <button type="submit" class="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition">
-                글 올리기
-            </button>
-        </form>
+    <div class="bg-white rounded-2xl shadow-md p-8 text-left border border-gray-200">
+      <a href="{% url 'blog:post_list' %}"
+         class="inline-block mb-6 text-gray-700 hover:text-gray-900 transition">
+        ← 글 목록으로 돌아가기
+      </a>
+
+      <form method="post" class="space-y-6">
+        {% csrf_token %}
+        {% for field in form %}
+          <div>
+            <label for="{{ field.id_for_label }}" class="block font-semibold text-gray-800 mb-2">
+              {{ field.label }}
+              {% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
+            {{ field|add_class:"w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" }}
+            {% if field.help_text %}
+              <p class="text-sm text-gray-500 mt-1">{{ field.help_text }}</p>
+            {% endif %}
+            {% for error in field.errors %}
+              <p class="text-sm text-red-500 mt-1">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+
+        <!-- ✅ 여기 진짜 버튼 보이게 됨 -->
+        <button type="submit"
+          class="w-full py-3 bg-yellow-400 text-gray-900 font-semibold rounded-lg hover:bg-yellow-500 transition duration-200">
+          글 올리기
+        </button>
+      </form>
     </div>
+  </div>
 </section>
 {% endblock %}

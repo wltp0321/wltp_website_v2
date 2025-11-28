@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}공지 분류 변경 | IMPERIUM SERVER{% endblock %}
+{% block description %}공지의 분류를 다른 카테고리로 옮깁니다.{% endblock %}
+
+{% block content %}
+<section class="section-header py-12 bg-gray-50 text-center">
+  <div class="max-w-3xl mx-auto px-4">
+    <h1 class="font-pixel text-4xl md:text-5xl mb-4 text-mc-yellow text-shadow-pixel">
+      공지 분류 이동
+    </h1>
+    <p class="text-lg opacity-80 leading-relaxed">
+      공지의 종류를 변경할 수 있습니다.
+    </p>
+  </div>
+</section>
+
+<section class="content-section py-10 bg-white">
+  <div class="max-w-2xl mx-auto px-6 bg-mc-gray p-8 rounded-2xl shadow-lg border border-gray-200">
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+      <p class="text-gray-700 mb-2">현재 분류: <strong>{{ notice.category }}</strong></p>
+      <div>
+        <label class="block mb-2 font-semibold text-gray-700">새 분류 선택</label>
+        {{ form.category|add_class:"w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-400" }}
+      </div>
+      <div class="flex justify-between items-center">
+        <a href="{% url 'notice:detail' notice.id %}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-pixel py-2 px-6 rounded-lg transition">
+          ← 취소
+        </a>
+        <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-pixel font-semibold py-2 px-8 rounded-lg transition">
+          분류 변경
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

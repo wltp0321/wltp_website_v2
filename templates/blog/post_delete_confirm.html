@@ -1,16 +1,46 @@
 {% extends "base.html" %}
 
-{% block title %}글 삭제 확인 - {{ post.title }}{% endblock %}
+{% block title %}글 삭제 확인 - {{ post.title }} | IMPERIUM SERVER{% endblock %}
 
 {% block content %}
-<section class="max-w-2xl mx-auto p-8 bg-white rounded-xl shadow mt-10">
-    <h1 class="text-2xl font-bold mb-4">글 삭제 확인</h1>
-    <p>정말로 "{{ post.title }}" 글을 삭제하시겠습니까?</p>
-
-    <form method="post" class="mt-6">
-        {% csrf_token %}
-        <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">삭제하기</button>
-        <a href="{% url 'blog:post_detail' post.pk %}" class="ml-4 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">취소</a>
-    </form>
+<section class="section-header py-12 bg-gray-50 text-center">
+  <div class="max-w-3xl mx-auto px-4">
+    <h1 class="font-pixel text-3xl md:text-4xl mb-4 text-mc-blue text-shadow-pixel">
+      글 삭제 확인
+    </h1>
+    <p class="text-lg opacity-80 leading-relaxed">
+      "{{ post.title }}" 글을 정말 삭제하시겠습니까?  
+      삭제된 글은 복구할 수 없습니다.
+    </p>
+  </div>
 </section>
+
+<section class="content-section py-10 bg-white">
+  <div class="max-w-2xl mx-auto px-6 md:px-8 bg-mc-gray p-8 rounded-2xl shadow-lg border border-gray-200">
+    <div class="mb-6">
+      <a href="{% url 'blog:post_detail' post.pk %}" 
+         class="px-4 py-2 mb-4 inline-block bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition font-pixel">
+        ← 뒤로가기
+      </a>
+    </div>
+
+    <form method="post" class="flex flex-wrap gap-4">
+      {% csrf_token %}
+      <button type="submit" 
+              class="flex-1 min-w-[120px] bg-red-600 text-white font-pixel font-semibold py-3 rounded-md hover:bg-red-700 transition">
+        삭제하기
+      </button>
+      <a href="{% url 'blog:post_detail' post.pk %}"
+         class="flex-1 min-w-[120px] text-center bg-gray-300 text-gray-800 font-pixel py-3 rounded-md hover:bg-gray-400 transition">
+        취소
+      </a>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer container mt-10">
+  <div class="text-center py-6 text-gray-400 text-sm">
+    © post_delete_confirm · Built with a modern minimalist theme
+  </div>
+</footer>
 {% endblock %}

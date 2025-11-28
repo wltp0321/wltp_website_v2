@@ -1,82 +1,88 @@
 {% extends "base.html" %}
 
-{% block title %}회원가입 - IMPERIUM SERVER{% endblock %}
+{% block title %}회원가입 - IMPERIUM Crew{% endblock %}
 
 {% block content %}
-<section class="section-header py-12 bg-gray-50 text-center">
-    <div class="max-w-4xl mx-auto px-4">
-        <h1 class="font-pixel text-3xl md:text-4xl lg:text-5xl mb-6 text-mc-blue text-shadow-pixel">
-            회원가입
-        </h1>
-        <p class="text-lg md:text-xl lg:text-2xl opacity-90 max-w-3xl mx-auto px-4 leading-relaxed">
-            IMPERIUM SERVER 에 새롭게 가입하시고 다양한 서버 활동을 즐겨보세요.
-        </p>
+<section style="text-align:center; padding:4rem 1rem; background-color:#fff8cc;">
+    <h1 style="font-family:'Montserrat', sans-serif; font-weight:700; font-size:2.5rem; color:#1f1f1f; margin-bottom:1rem;">
+        회원가입
+    </h1>
+    <p style="font-size:1.1rem; color:#333; opacity:0.9;">
+        IMPERIUM Crew에 새롭게 가입하시고 다양한 서버 활동을 즐겨보세요.
+    </p>
+</section>
+
+<section style="padding:3rem 1rem; background-color:#f0f2f5;">
+    <div style="max-width:480px; margin:0 auto;">
+        <div class="card-component">
+            <form id="signupForm" method="POST" action="{% url 'account:signup' %}" style="display:flex; flex-direction:column; gap:1.2rem;">
+                {% csrf_token %}
+                {% include "account/form_errors.html" %}
+
+                <div>
+                    <label for="username" style="display:block; font-weight:600; color:#1f1f1f; margin-bottom:0.5rem;">ID</label>
+                    <input id="username" name="username" type="text" required
+                           value="{{ form.username.value|default_if_none:'' }}"
+                           style="width:100%; box-sizing:border-box; padding:0.8rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; transition:all 0.3s ease;"
+                           onfocus="this.style.borderColor='#ffcc00';" onblur="this.style.borderColor='#ccc';">
+                </div>
+
+                <div>
+                    <label for="email" style="display:block; font-weight:600; color:#1f1f1f; margin-bottom:0.5rem;">이메일</label>
+                    <input id="email" name="email" type="email" required
+                           value="{{ form.email.value|default_if_none:'' }}"
+                           style="width:100%; box-sizing:border-box; padding:0.8rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; transition:all 0.3s ease;"
+                           onfocus="this.style.borderColor='#ffcc00';" onblur="this.style.borderColor='#ccc';">
+                </div>
+
+                <div>
+                    <label for="nickname0" style="display:block; font-weight:600; color:#1f1f1f; margin-bottom:0.5rem;">마인크래프트 닉네임 1 (본계정)</label>
+                    <input id="nickname0" name="nickname0" type="text"
+                           value="{{ form.first_name.value|default_if_none:'' }}"
+                           style="width:100%; box-sizing:border-box; padding:0.8rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; transition:all 0.3s ease;"
+                           onfocus="this.style.borderColor='#ffcc00';" onblur="this.style.borderColor='#ccc';">
+                </div>
+
+                <div>
+                    <label for="nickname1" style="display:block; font-weight:600; color:#1f1f1f; margin-bottom:0.5rem;">마인크래프트 닉네임 2 (부계정)</label>
+                    <input id="nickname1" name="nickname1" type="text"
+                           value="{{ form.last_name.value|default_if_none:'' }}"
+                           style="width:100%; box-sizing:border-box; padding:0.8rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; transition:all 0.3s ease;"
+                           onfocus="this.style.borderColor='#ffcc00';" onblur="this.style.borderColor='#ccc';">
+                </div>
+
+                <div>
+                    <label for="password1" style="display:block; font-weight:600; color:#1f1f1f; margin-bottom:0.5rem;">비밀번호</label>
+                    <input id="password1" name="password1" type="password" required
+                           value="{{ form.password1.value|default_if_none:'' }}"
+                           style="width:100%; box-sizing:border-box; padding:0.8rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; transition:all 0.3s ease;"
+                           onfocus="this.style.borderColor='#ffcc00';" onblur="this.style.borderColor='#ccc';">
+                </div>
+
+                <div>
+                    <label for="password2" style="display:block; font-weight:600; color:#1f1f1f; margin-bottom:0.5rem;">비밀번호 확인</label>
+                    <input id="password2" name="password2" type="password" required
+                           value="{{ form.password2.value|default_if_none:'' }}"
+                           style="width:100%; box-sizing:border-box; padding:0.8rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; transition:all 0.3s ease;"
+                           onfocus="this.style.borderColor='#ffcc00';" onblur="this.style.borderColor='#ccc';">
+                </div>
+
+                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+
+                <button type="submit" class="btn-primary" style="width:100%; font-size:1rem;">회원가입</button>
+            </form>
+        </div>
     </div>
 </section>
 
-<section class="content-section py-10 bg-white">
-    <div class="max-w-md mx-auto px-6 md:px-8">
-        <form method="POST" action="{% url 'account:signup' %}" class="space-y-6 bg-mc-gray p-8 rounded-2xl shadow-lg border border-gray-200">
-            {% csrf_token %}
-            {% include "account/form_errors.html" %}
-
-            <div>
-                <label for="username" class="block mb-2 font-semibold text-mc-blue">ID</label>
-                <input id="username" name="username" type="text" required
-                       value="{{ form.username.value|default_if_none:'' }}"
-                       class="w-full rounded-md border border-gray-300 p-3 text-base focus:outline-none focus:ring-2 focus:ring-mc-blue transition" />
-            </div>
-
-            <div>
-                <label for="email" class="block mb-2 font-semibold text-mc-blue">이메일</label>
-                <input id="email" name="email" type="email" required
-                       value="{{ form.email.value|default_if_none:'' }}"
-                       class="w-full rounded-md border border-gray-300 p-3 text-base focus:outline-none focus:ring-2 focus:ring-mc-blue transition" />
-            </div>
-
-            <div>
-                <label for="nickname0" class="block mb-2 font-semibold text-mc-blue">마인크래프트 닉네임 1 (본계정)</label>
-                <input id="nickname0" name="nickname0" type="text"
-                       value="{{ form.first_name.value|default_if_none:'' }}"
-                       class="w-full rounded-md border border-gray-300 p-3 text-base focus:outline-none focus:ring-2 focus:ring-mc-blue transition" />
-            </div>
-
-            <div>
-                <label for="nickname1" class="block mb-2 font-semibold text-mc-blue">마인크래프트 닉네임 2 (부계정)</label>
-                <input id="nickname1" name="nickname1" type="text"
-                       value="{{ form.last_name.value|default_if_none:'' }}"
-                       class="w-full rounded-md border border-gray-300 p-3 text-base focus:outline-none focus:ring-2 focus:ring-mc-blue transition" />
-            </div>
-
-            <div>
-                <label for="password1" class="block mb-2 font-semibold text-mc-blue">비밀번호</label>
-                <input id="password1" name="password1" type="password" required
-                       value="{{ form.password1.value|default_if_none:'' }}"
-                       class="w-full rounded-md border border-gray-300 p-3 text-base focus:outline-none focus:ring-2 focus:ring-mc-blue transition" />
-            </div>
-
-            <div>
-                <label for="password2" class="block mb-2 font-semibold text-mc-blue">비밀번호 확인</label>
-                <input id="password2" name="password2" type="password" required
-                       value="{{ form.password2.value|default_if_none:'' }}"
-                       class="w-full rounded-md border border-gray-300 p-3 text-base focus:outline-none focus:ring-2 focus:ring-mc-blue transition" />
-            </div>
-
-            <button type="submit"
-                    class="w-full bg-mc-blue text-white font-pixel font-semibold py-3 rounded-md hover:bg-blue-700 transition">
-                회원가입
-            </button>
-        </form>
-    </div>
-</section>
 <script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha_site_key }}"></script>
 <script>
 grecaptcha.ready(function() {
-  document.getElementById('myForm').addEventListener('submit', function(event) {
-    event.preventDefault();  // 폼 제출 잠시 막기
+  document.getElementById('signupForm').addEventListener('submit', function(event) {
+    event.preventDefault();
     grecaptcha.execute('{{ recaptcha_site_key }}', {action: 'submit'}).then(function(token) {
       document.getElementById('g-recaptcha-response').value = token;
-      document.getElementById('myForm').submit();  // 토큰 넣고 폼 제출
+      document.getElementById('signupForm').submit();
     });
   });
 });

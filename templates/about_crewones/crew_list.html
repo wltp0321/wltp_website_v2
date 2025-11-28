@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}팀원 소개 - IMPERIUM Crew{% endblock %}
+{% block description %}임페리움 크루의 팀원을 소개하는 페이지{% endblock %}
+
+{% block content %}
+<section class="py-16 bg-gray-50 min-h-screen">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <!-- Hero Section -->
+    <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+      <div class="text-center md:text-left mb-4 md:mb-0">
+        <h1 class="text-4xl md:text-5xl font-pixel text-gray-900">
+          팀원 소개
+        </h1>
+        <p class="text-gray-600 text-lg">
+          임페리움 크루의 팀원들을 소개합니다.
+        </p>
+      </div>
+      {% if user.is_staff %}
+      <div>
+        <a href="{% url 'about_crewones:add_crew' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition">
+          팀원 추가
+        </a>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Team Cards Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      {% for crew in crews %}
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition relative">
+
+          {% if crew.image %}
+            <img src="{{ crew.image.url }}" alt="{{ crew.name }}" class="w-full h-48 object-cover">
+          {% endif %}
+
+          <div class="p-6">
+            <h2 class="text-xl font-semibold text-gray-900 mb-2">{{ crew.name }}</h2>
+            {% if crew.position %}
+              <h3 class="text-mc-blue font-medium mb-3">{{ crew.position }}</h3>
+            {% endif %}
+            {% if crew.description %}
+              <p class="text-gray-600">{{ crew.description|truncatechars:120 }}</p>
+            {% endif %}
+          </div>
+
+          <!-- Staff Action Buttons -->
+          {% if user.is_staff %}
+          <div class="absolute top-4 right-4 flex space-x-2">
+            <a href="{% url 'about_crewones:edit_crew' crew.pk %}" class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-lg text-sm transition">
+              수정
+            </a>
+            <form method="post" action="{% url 'about_crewones:delete_crew' crew.pk %}" class="inline">
+              {% csrf_token %}
+              <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm transition">
+                삭제
+              </button>
+            </form>
+          </div>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

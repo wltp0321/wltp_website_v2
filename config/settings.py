@@ -43,9 +43,8 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://wltp.world',
-    '*'
-    'https://wltp.world',
+    'https://wltp.kr',
+    'https://testserver.wltp.kr'
 ]
 
 # Application definition
@@ -69,14 +68,14 @@ RECAPTCHA_PRIVATE_KEY = get_secret("Captcha_Private_KEY")
 
 INSTALLED_APPS = [
     'main',
-    'ranking',
+    'projects',
     'account',
     'api',
-    'how_to_join',
-    'description',
+    'about_crewones_settings',
+    'about_crew',
     'notice',
     'config',
-    'rule',
+    'about_crewones',
     'blog',
     'markdownx',
     'snowpenguin.django.recaptcha3',
@@ -166,7 +165,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-SITE_URL = 'https://www.wltp.world'
+SITE_URL = 'https://wltp.kr'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -181,7 +180,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOCALE_PATHS = (BASE_DIR / "locale",)
 
 STATIC_ROOT = BASE_DIR / 'static'  # 배포용 폴더 (임의 지정)
-STATICFILES_DIRS = [str(BASE_DIR / 'static')]  # 개발 중 정적 파일 폴더
+STATICFILES_DIRS = [str(BASE_DIR / 'static_for_test')]  # 개발 중 정적 파일 폴더
 
 
 LOGIN_REDIRECT_URL = '/'
@@ -190,7 +189,7 @@ MEDIA_URL = '/media/'
 
 EMAIL_HOST = 'smtp.daum.net' 		 # 메일 호스트 서버
 EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'noreply@wltp.world'
+EMAIL_HOST_USER = 'noreply@wltp.kr'
 EMAIL_HOST_PASSWORD = get_secret("SMTP_KEY")		 # 우리가 사용할 Gmail p
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False			 # TLS 보안 설정

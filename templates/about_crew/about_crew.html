@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}크루 소개 - IMPERIUM Crew{% endblock %}
+{% block description %}임페리움 크루를 소개하는 페이지{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-400 text-white py-24 rounded-3xl shadow-lg mx-4 my-8 overflow-hidden">
+  <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-mosaic.png')] opacity-20"></div>
+  <div class="relative text-center max-w-4xl mx-auto px-6">
+    <h1 class="font-pixel text-4xl md:text-5xl mb-6 drop-shadow-lg">크루 소개</h1>
+    <p class="text-lg md:text-xl leading-relaxed text-blue-100">
+      임페리움 서버는 창의력과 커뮤니티를 중시하는<br class="hidden md:block">
+      마인크래프트 서버입니다.
+    </p>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center text-blue-700 mb-12 font-pixel">서버 특징</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {% for about in about_crew %}
+      <div class="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition text-center">
+        <div class="text-4xl mb-3">{{ about.emoji }}</div>
+        <h3 class="text-lg font-semibold text-blue-700 mb-2">{{ about.title }}</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">{{ about.content }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Crew Info Section -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center text-blue-700 mb-12 font-pixel">크루 정보</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- 시작일 -->
+      <div class="bg-gradient-to-b from-blue-50 to-white rounded-3xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-2 transition">
+        <div class="text-3xl mb-3">🌐</div>
+        <h3 class="text-lg font-semibold text-blue-700 mb-2">크루 활동 시작일</h3>
+        <p class="text-xl font-bold text-blue-700">2024-12-27 20:22</p>
+      </div>
+
+      <!-- 하는 게임 -->
+      <div class="bg-gradient-to-b from-indigo-50 to-white rounded-3xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-2 transition">
+        <div class="text-3xl mb-3">🎮</div>
+        <h3 class="text-lg font-semibold text-blue-700 mb-2">하는 게임?</h3>
+        <p class="text-xl font-bold text-blue-700">마크와 배그 등등등</p>
+      </div>
+
+      <!-- 인원 -->
+      <div class="bg-gradient-to-b from-cyan-50 to-white rounded-3xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-2 transition">
+        <div class="text-3xl mb-3">👤</div>
+        <h3 class="text-lg font-semibold text-blue-700 mb-2">크루 인원</h3>
+        <p class="text-xl font-bold text-blue-700">6명</p>
+      </div>
+
+      <!-- 디스코드 -->
+      <div class="bg-gradient-to-b from-sky-50 to-white rounded-3xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-2 transition">
+        <div class="text-3xl mb-3">💬</div>
+        <h3 class="text-lg font-semibold text-blue-700 mb-2">디스코드</h3>
+        <a href="https://discord.com/invite/VEVpENDU96" 
+           class="text-xl font-bold text-blue-700 hover:underline hover:text-blue-800 transition">
+           지세 커뮤니티
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
