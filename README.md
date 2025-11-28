@@ -22,12 +22,6 @@ IMPERIUM SERVER v2 is a Django-powered web project, designed to efficiently mana
 - 📢 **서버 소개 및 공지사항 게시**  
   Server introduction and announcements
 
-- 🏆 **플레이어 랭킹 및 통계 정보 표시**  
-  Player rankings and statistics
-
-- 🖼️ **마인크래프트 갤러리 (이미지 콘텐츠)**  
-  Minecraft gallery (image content)
-
 - 🛠️ **관리자 전용 CRUD 시스템 (공지/프로젝트/팀원)**  
   Admin-only CRUD system for notices, projects, and crew members
 
@@ -75,7 +69,7 @@ wltp_website_v2/
 오류 제보, 제안, 또는 기여는 GitHub 이슈 또는 Pull Request로 환영합니다.  
 Bug reports, suggestions, or contributions are welcome via GitHub Issues or Pull Requests.
 
-- GitHub: [https://github.com/wltp0321/wltp_website](https://github.com/wltp0321/wltp_website)
+- GitHub: [https://github.com/wltp0321/wltp_website_v2](https://github.com/wltp0321/wltp_website_v2)
 
 ---
 
