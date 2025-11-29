@@ -49,28 +49,28 @@ def replace_checkboxes(html):
     return html
 
 
-def docs_detail_view(request, doc_id):
-    doc = get_object_or_404(MarkdownDocument, id=doc_id)
-    raw_html = markdown.markdown(
-        doc.content,
-        extensions=[
-            'fenced_code',
-            'codehilite',
-            'tables',
-            'pymdownx.tilde',
-            'pymdownx.tasklist',
-        ],
-        extension_configs={
-            'pymdownx.tasklist': {'custom_checkbox': False}
-        }
-    )
-    
-    content = replace_checkboxes(raw_html)
-    return render(request, 'docs/docs_detail.html', {
-        'doc': doc,
-        'content': content,
-    })
-
-def docs_list(request):
-    docs = MarkdownDocument.objects.order_by('-created_at')
-    return render(request, 'docs/docs_list.html', {'docs': docs})
+#def docs_detail_view(request, doc_id):
+#    doc = get_object_or_404(MarkdownDocument, id=doc_id)
+#    raw_html = markdown.markdown(
+#        doc.content,
+#        extensions=[
+#            'fenced_code',
+#            'codehilite',
+#            'tables',
+#            'pymdownx.tilde',
+#            'pymdownx.tasklist',
+#        ],
+#        extension_configs={
+#            'pymdownx.tasklist': {'custom_checkbox': False}
+#        }
+#    )
+#    
+#    content = replace_checkboxes(raw_html)
+#    return render(request, 'docs/docs_detail.html', {
+#        'doc': doc,
+#        'content': content,
+#    })
+#
+#def docs_list(request):
+#    docs = MarkdownDocument.objects.order_by('-created_at')
+#    return render(request, 'docs/docs_list.html', {'docs': docs})
