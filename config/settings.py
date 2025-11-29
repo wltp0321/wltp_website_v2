@@ -18,7 +18,7 @@ import json
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = BASE_DIR / "templates"
 
-secret_file = os.path.join(BASE_DIR, '../secrets.json')
+secret_file = os.path.join(BASE_DIR, 'secrets.json')
 
 with open(secret_file) as f:
     secrets = json.loads(f.read())
@@ -38,13 +38,13 @@ SECRET_KEY = get_secret("SECRET_KEY")
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://wltp.kr',
-    'https://testserver.wltp.kr'
+    'https://wltp.world'
 ]
 
 # Application definition
@@ -186,12 +186,14 @@ LOGIN_REDIRECT_URL = '/'
 MEDIA_ROOT = BASE_DIR/'media'
 MEDIA_URL = '/media/'
 
-EMAIL_HOST = 'smtp.daum.net' 		 # 메일 호스트 서버
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.worksmobile.com' 		 # 메일 호스트 서버
 EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'noreply@wltp.kr'
-EMAIL_HOST_PASSWORD = get_secret("SMTP_KEY")		 # 우리가 사용할 Gmail p
+EMAIL_HOST_USER = 'support@wltp.kr'
+EMAIL_HOST_PASSWORD = get_secret("SMTP_KEY")		 
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False			 # TLS 보안 설정
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER	 # 응답 메일 관련 설정
+DEFAULT_FROM_EMAIL = 'support@wltp.kr'	 # 응답 메일 관련 설정
+
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

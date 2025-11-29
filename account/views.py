@@ -63,6 +63,8 @@ def signup(request):
     return render(request, 'account/signup.html', {'form': form})
 
 
+
+
 def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))

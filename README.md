@@ -88,7 +88,7 @@ Bug reports, suggestions, or contributions are welcome via GitHub Issues or Pull
 
 ## 📌 참고 | Notes
 
-- 이 프로젝트는 **v2 버전** 기준으로 Django 4.x 이상에서 개발되었습니다.
+- 이 프로젝트는 **v2 버전** 기준으로 Django 5.2.3 이상에서 개발되었습니다.
 - Tailwind CSS를 사용하여 **현대적이고 반응형 UI**를 구현했습니다.
 - 관리자(staff) 권한을 통해 **프로젝트/공지/팀원 CRUD 기능**을 사용할 수 있습니다.
 
