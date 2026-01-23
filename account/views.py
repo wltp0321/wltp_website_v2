@@ -19,7 +19,7 @@ User = get_user_model()
 
 
 def account_main(request):
-    return render(request, "account/index.html")
+    return render(request, "account/index.html", {"recaptcha_site_key": RECAPTCHA_SITE_KEY})
 
 
 def logout_view(request):

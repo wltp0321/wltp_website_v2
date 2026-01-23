@@ -75,12 +75,12 @@
     </div>
 </section>
 
-<script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha_site_key }}"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6Le4zFMsAAAAALdibB-Nqi9WtTzA3gGRG2Ylbjid"></script>
 <script>
 grecaptcha.ready(function() {
   document.getElementById('signupForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    grecaptcha.execute('{{ recaptcha_site_key }}', {action: 'submit'}).then(function(token) {
+    grecaptcha.execute('6Le4zFMsAAAAALdibB-Nqi9WtTzA3gGRG2Ylbjid', {action: 'submit'}).then(function(token) {
       document.getElementById('g-recaptcha-response').value = token;
       document.getElementById('signupForm').submit();
     });
