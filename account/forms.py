@@ -31,7 +31,16 @@ class UserForm(UserCreationForm):
                 'password_mismatch': _('비밀번호가 일치하지 않습니다.'),
             },
         }
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get("password1")
+        password2 = cleaned_data.get("password2")
 
+        # 두 비밀번호가 모두 입력되었는데 서로 다를 경우 에러 발생
+        if password1 and password2 and password1 != password2:
+            self.add_error('password2', '비밀번호가 일치하지 않습니다.')
+            
+        return cleaned_data
 
 
 class CustomUserChangeForm(UserChangeForm):

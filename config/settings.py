@@ -187,12 +187,12 @@ MEDIA_ROOT = BASE_DIR/'media'
 MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.worksmobile.com' 		 # 메일 호스트 서버
-EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'support@wltp.kr'
+EMAIL_HOST = 'smtp.resend.com' 		 # 메일 호스트 서버
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'resend'
 EMAIL_HOST_PASSWORD = get_secret("SMTP_KEY")		 
-EMAIL_USE_SSL = True
-EMAIL_USE_TLS = False			 # TLS 보안 설정
+EMAIL_USE_SSL = False
+EMAIL_USE_TLS = True			 # TLS 보안 설정
 DEFAULT_FROM_EMAIL = 'support@wltp.kr'	 # 응답 메일 관련 설정
 
 
