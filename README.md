@@ -93,4 +93,4 @@ Bug reports, suggestions, or contributions are welcome via GitHub Issues or Pull
 - 관리자(staff) 권한을 통해 **프로젝트/공지/팀원 CRUD 기능**을 사용할 수 있습니다.
 
 
-
+2026-06-21 : 웹훅을 추가하였습니다
